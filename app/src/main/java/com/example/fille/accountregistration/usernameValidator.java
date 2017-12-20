@@ -9,7 +9,7 @@ public class usernameValidator implements Validator {
     public boolean isValid(String input) {
         boolean valid = false;
 
-        if(input.matches("[a-z|A-Z|0-9]+") && input.length() > 2){
+        if(input.matches("[a-z|A-Z|0-9]+") && input.length() > 4){
             valid = true;
         }
 

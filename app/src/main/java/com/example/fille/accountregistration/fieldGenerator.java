@@ -17,12 +17,18 @@ public class fieldGenerator extends LinearLayout {
 
     EditText editTextPass;
     EditText editTextUs;
+    EditText editTextFull;
+    EditText editTextEmail;
     Button button;
     LinearLayout.LayoutParams param;
     passwordValidator pwValidator;
     usernameValidator usValidator;
+    fullNameValidator fnValidator;
+    emailValidator emailValidator;
     field fieldgenPass;
     field fieldgenUs;
+    field fieldgenFull;
+    field fieldgenEmail;
 
 
     public fieldGenerator(final Context context){
@@ -30,29 +36,43 @@ public class fieldGenerator extends LinearLayout {
 
         editTextPass = new EditText(context);
         editTextUs = new EditText(context);
+        editTextFull = new EditText(context);
+        editTextEmail = new EditText(context);
         button = new Button(context);
         this.setOrientation(LinearLayout.VERTICAL);
         param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         button.setLayoutParams(param);
         button.setText("Registrera");
         editTextPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        editTextEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
 
         pwValidator = new passwordValidator();
         usValidator = new usernameValidator();
+        fnValidator = new fullNameValidator();
+        emailValidator = new emailValidator();
         fieldgenPass = new field(context, pwValidator);
         fieldgenUs = new field(context, usValidator);
+        fieldgenFull = new field(context, fnValidator);
+        fieldgenEmail = new field(context, emailValidator);
+
 
         fieldgenUs.addField("Username", editTextUs);
         fieldgenPass.addField("password", editTextPass);
+        fieldgenFull.addField("Full Name", editTextFull);
+        fieldgenEmail.addField("Email", editTextEmail);
         this.setLayoutParams(param);
         this.addView(fieldgenUs.getLayout());
         this.addView(fieldgenPass.getLayout());
+        this.addView(fieldgenFull.getLayout());
+        this.addView(fieldgenEmail.getLayout());
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(fieldgenPass.isFilled && fieldgenUs.isFilled){
+                if(fieldgenPass.isFilled && fieldgenUs.isFilled && fieldgenFull.isFilled && fieldgenEmail.isFilled){
 
                     Toast.makeText(context, "Det är ok", Toast.LENGTH_SHORT).show();
 
