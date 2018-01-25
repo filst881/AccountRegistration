@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -15,7 +16,7 @@ import android.widget.Toast;
 
 public class fieldGenerator extends LinearLayout {
 
-    EditText editTextPass;
+   /* EditText editTextPass;
     EditText editTextUs;
     EditText editTextFull;
     EditText editTextEmail;
@@ -25,16 +26,20 @@ public class fieldGenerator extends LinearLayout {
     usernameValidator usValidator;
     fullNameValidator fnValidator;
     emailValidator emailValidator;
+    dateValidator dtValidator;
     field fieldgenPass;
     field fieldgenUs;
     field fieldgenFull;
     field fieldgenEmail;
+    field fieldgenDate;
+    EditText date; */
+
 
 
     public fieldGenerator(final Context context){
         super(context);
 
-        editTextPass = new EditText(context);
+       /* editTextPass = new EditText(context);
         editTextUs = new EditText(context);
         editTextFull = new EditText(context);
         editTextEmail = new EditText(context);
@@ -45,48 +50,42 @@ public class fieldGenerator extends LinearLayout {
         button.setText("Registrera");
         editTextPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         editTextEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        date = new EditText(context);
+        date.setInputType(InputType.TYPE_CLASS_NUMBER);
 
 
         pwValidator = new passwordValidator();
         usValidator = new usernameValidator();
         fnValidator = new fullNameValidator();
         emailValidator = new emailValidator();
-        fieldgenPass = new field(context, pwValidator);
-        fieldgenUs = new field(context, usValidator);
-        fieldgenFull = new field(context, fnValidator);
-        fieldgenEmail = new field(context, emailValidator);
+        dtValidator = new dateValidator();
+        fieldgenPass = new field("password", editTextPass, context, pwValidator);
+        fieldgenUs = new field("Username", editTextUs, context, usValidator);
+        fieldgenFull = new field("Full Name", editTextFull, context, fnValidator);
+        fieldgenEmail = new field("Email", editTextEmail, context, emailValidator);
+        fieldgenDate = new field("Date", date, context, dtValidator);
 
 
-        fieldgenUs.addField("Username", editTextUs);
-        fieldgenPass.addField("password", editTextPass);
-        fieldgenFull.addField("Full Name", editTextFull);
-        fieldgenEmail.addField("Email", editTextEmail);
+
         this.setLayoutParams(param);
         this.addView(fieldgenUs.getLayout());
         this.addView(fieldgenPass.getLayout());
         this.addView(fieldgenFull.getLayout());
         this.addView(fieldgenEmail.getLayout());
+        this.addView(fieldgenDate.getLayout());
+
+        */
 
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(fieldgenPass.isFilled && fieldgenUs.isFilled && fieldgenFull.isFilled && fieldgenEmail.isFilled){
-
-                    Toast.makeText(context, "Det är ok", Toast.LENGTH_SHORT).show();
-
-                }else{
-
-                    Toast.makeText(context, "Dt är inte ok", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-        this.addView(button);
 
 
+
+
+    }
+
+
+    public void addField(field fld){
+        this.addView(fld.getLayout());
     }
 
 

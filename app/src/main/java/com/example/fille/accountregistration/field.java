@@ -51,7 +51,19 @@ public class field {
 
     }
 
-    public void addField(String fieldName, EditText editText){
+    public field(String fieldName, EditText editText, Context context, final Validator validator){
+        this.context = context;
+        this.validator = validator;
+        layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.HORIZONTAL);
+        validField = new TextView(context);
+        parameter = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT);
+        param = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        params.weight = 0.6f;
+        param.weight = 0.2f;
+
         TextView text = new TextView(context);
         text.setText(fieldName);
         text.setLayoutParams(param);
